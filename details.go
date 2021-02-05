@@ -6,7 +6,7 @@ package gogurls
 
 import (
 	"fmt"
-	"github.com/boggydigital/gogog/pkg/gogtypes"
+	"github.com/arelate/gogtypes"
 	"net/url"
 	"strings"
 )
