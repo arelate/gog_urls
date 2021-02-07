@@ -34,13 +34,11 @@ func AccountProductsPage(
 		Path:   accountProductsPagePath,
 	}
 
-	if sortOrder == "" {
-		sortOrder = gogtypes.AccountProductsSortPurchaseDate
-	}
-
 	q := accountProductsPage.Query()
 	q.Add("mediaType", strconv.Itoa(int(mt)))
-	q.Add("sortBy", string(sortOrder))
+	if sortOrder != "" {
+		q.Add("sortBy", string(sortOrder))
+	}
 	q.Add("page", page)
 	if hidden {
 		q.Add("hiddenFlag", "1")

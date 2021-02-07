@@ -26,13 +26,11 @@ func ProductsPage(
 		Path:   productsPagePath,
 	}
 
-	if sortOrder == "" {
-		sortOrder = gogtypes.ProductsSortByNewestFirst
-	}
-
 	q := productsPage.Query()
 	q.Add("mediaType", mt.String())
-	q.Add("sort", string(sortOrder))
+	if sortOrder != "" {
+		q.Add("sort", string(sortOrder))
+	}
 	q.Add("page", page)
 	productsPage.RawQuery = q.Encode()
 

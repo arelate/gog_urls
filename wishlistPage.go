@@ -28,13 +28,11 @@ func WishlistPage(
 		Path:   wishlistPath,
 	}
 
-	if sortOrder == "" {
-		sortOrder = gogtypes.WishlistSortByDateAdded
-	}
-
 	q := wishlistPage.Query()
 	q.Add("mediaType", strconv.Itoa(int(mt)))
-	q.Add("sortBy", string(sortOrder))
+	if sortOrder != "" {
+		q.Add("sortBy", string(sortOrder))
+	}
 	if hidden {
 		q.Add("hiddenFlag", "1")
 	}
