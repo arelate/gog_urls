@@ -5,17 +5,16 @@
 package gogurls
 
 import (
-	"fmt"
 	"github.com/arelate/gogtypes"
 	"net/url"
 	"strings"
 )
 
-func Details(id int, mt gogtypes.Media) *url.URL {
-	path := strings.Replace(detailsPath, "{mediaType}", mt.String(), 1)
+func Details(id string, mt gogtypes.Media) *url.URL {
+	path := strings.Replace(detailsPathTemplate, "{mediaType}", mt.String(), 1)
 	return &url.URL{
 		Scheme: HttpsScheme,
 		Host:   GogHost,
-		Path:   fmt.Sprintf("%s%d.json", path, id),
+		Path:   strings.Replace(path, "{id}", id, 1),
 	}
 }

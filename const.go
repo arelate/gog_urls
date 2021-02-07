@@ -16,7 +16,7 @@ const (
 
 // paths
 const (
-	detailsPath             = "/account/{mediaType}Details/"
+	detailsPathTemplate     = "/account/{mediaType}Details/{id}.json"
 	productsPagePath        = "/games/ajax/filtered"
 	accountProductsPagePath = "/account/getFilteredProducts"
 	wishlistPath            = "/account/wishlist/search"

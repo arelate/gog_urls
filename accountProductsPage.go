@@ -11,7 +11,7 @@ import (
 )
 
 func DefaultAccountProductsPage(
-	page int,
+	page string,
 	mt gogtypes.Media) *url.URL {
 	return AccountProductsPage(
 		page,
@@ -22,7 +22,7 @@ func DefaultAccountProductsPage(
 }
 
 func AccountProductsPage(
-	page int,
+	page string,
 	mt gogtypes.Media,
 	sortOrder gogtypes.AccountProductsSortOrder,
 	updated bool, /* get only updated products */
@@ -34,15 +34,6 @@ func AccountProductsPage(
 		Path:   accountProductsPagePath,
 	}
 
-	hiddenFlag, updatedFlag := "0", "0"
-	if hidden {
-		hiddenFlag = "1"
-	}
-
-	if updated {
-		updatedFlag = "1"
-	}
-
 	if sortOrder == "" {
 		sortOrder = gogtypes.AccountProductsSortPurchaseDate
 	}
@@ -50,9 +41,13 @@ func AccountProductsPage(
 	q := accountProductsPage.Query()
 	q.Add("mediaType", strconv.Itoa(int(mt)))
 	q.Add("sortBy", string(sortOrder))
-	q.Add("page", strconv.Itoa(page))
-	q.Add("hiddenFlag", hiddenFlag)
-	q.Add("isUpdated", updatedFlag)
+	q.Add("page", page)
+	if hidden {
+		q.Add("hiddenFlag", "1")
+	}
+	if updated {
+		q.Add("isUpdated", "1")
+	}
 	accountProductsPage.RawQuery = q.Encode()
 
 	return accountProductsPage

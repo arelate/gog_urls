@@ -11,13 +11,13 @@ import (
 )
 
 func DefaultWishlistPage(
-	page int,
+	page string,
 	mt gogtypes.Media) *url.URL {
 	return WishlistPage(page, mt, gogtypes.WishlistSortByDateAdded, false)
 }
 
 func WishlistPage(
-	page int,
+	page string,
 	mt gogtypes.Media,
 	sortOrder gogtypes.WishlistSortOrder,
 	hidden bool) *url.URL {
@@ -28,11 +28,6 @@ func WishlistPage(
 		Path:   wishlistPath,
 	}
 
-	hiddenFlag := "0"
-	if hidden {
-		hiddenFlag = "1"
-	}
-
 	if sortOrder == "" {
 		sortOrder = gogtypes.WishlistSortByDateAdded
 	}
@@ -40,8 +35,10 @@ func WishlistPage(
 	q := wishlistPage.Query()
 	q.Add("mediaType", strconv.Itoa(int(mt)))
 	q.Add("sortBy", string(sortOrder))
-	q.Add("hiddenFlag", hiddenFlag)
-	q.Add("page", strconv.Itoa(page))
+	if hidden {
+		q.Add("hiddenFlag", "1")
+	}
+	q.Add("page", page)
 	wishlistPage.RawQuery = q.Encode()
 
 	return wishlistPage

@@ -7,17 +7,16 @@ package gogurls
 import (
 	"github.com/arelate/gogtypes"
 	"net/url"
-	"strconv"
 )
 
 func DefaultProductsPage(
-	page int,
+	page string,
 	mt gogtypes.Media) *url.URL {
 	return ProductsPage(page, mt, gogtypes.ProductsSortByNewestFirst)
 }
 
 func ProductsPage(
-	page int,
+	page string,
 	mt gogtypes.Media,
 	sortOrder gogtypes.ProductsSortOrder) *url.URL {
 
@@ -34,7 +33,7 @@ func ProductsPage(
 	q := productsPage.Query()
 	q.Add("mediaType", mt.String())
 	q.Add("sort", string(sortOrder))
-	q.Add("page", strconv.Itoa(page))
+	q.Add("page", page)
 	productsPage.RawQuery = q.Encode()
 
 	return productsPage
