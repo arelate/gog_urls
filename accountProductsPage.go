@@ -10,12 +10,23 @@ import (
 	"strconv"
 )
 
+func DefaultAccountProductsPage(
+	page int,
+	mt gogtypes.Media) *url.URL {
+	return AccountProductsPage(
+		page,
+		mt,
+		gogtypes.AccountProductsSortPurchaseDate,
+		false,
+		false)
+}
+
 func AccountProductsPage(
 	page int,
 	mt gogtypes.Media,
 	sortOrder gogtypes.AccountProductsSortOrder,
-	updated bool,
-	hidden bool) *url.URL {
+	updated bool, /* get only updated products */
+	hidden bool /* get only hidden products */) *url.URL {
 
 	accountProductsPage := &url.URL{
 		Scheme: HttpsScheme,

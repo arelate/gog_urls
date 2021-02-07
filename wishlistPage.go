@@ -10,6 +10,12 @@ import (
 	"strconv"
 )
 
+func DefaultWishlistPage(
+	page int,
+	mt gogtypes.Media) *url.URL {
+	return WishlistPage(page, mt, gogtypes.WishlistSortByDateAdded, false)
+}
+
 func WishlistPage(
 	page int,
 	mt gogtypes.Media,

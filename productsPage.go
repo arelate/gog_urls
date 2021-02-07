@@ -10,6 +10,12 @@ import (
 	"strconv"
 )
 
+func DefaultProductsPage(
+	page int,
+	mt gogtypes.Media) *url.URL {
+	return ProductsPage(page, mt, gogtypes.ProductsSortByNewestFirst)
+}
+
 func ProductsPage(
 	page int,
 	mt gogtypes.Media,
