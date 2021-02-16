@@ -1,6 +1,8 @@
 package gog_urls
 
-import "net/url"
+import (
+	"net/url"
+)
 
 const pngExt = ".png"
 
