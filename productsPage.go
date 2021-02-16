@@ -2,23 +2,23 @@
 // Use of this source code is governed by an MIT-style license that can be
 // found in the LICENSE file.
 
-package gogurls
+package gog_urls
 
 import (
-	"github.com/arelate/gogtypes"
+	"github.com/arelate/gog_types"
 	"net/url"
 )
 
 func DefaultProductsPage(
 	page string,
-	mt gogtypes.Media) *url.URL {
-	return ProductsPage(page, mt, gogtypes.ProductsSortByNewestFirst)
+	mt gog_types.Media) *url.URL {
+	return ProductsPage(page, mt, gog_types.ProductsSortByNewestFirst)
 }
 
 func ProductsPage(
 	page string,
-	mt gogtypes.Media,
-	sortOrder gogtypes.ProductsSortOrder) *url.URL {
+	mt gog_types.Media,
+	sortOrder gog_types.ProductsSortOrder) *url.URL {
 
 	productsPage := &url.URL{
 		Scheme: HttpsScheme,

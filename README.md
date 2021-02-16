@@ -1,10 +1,10 @@
-# gogurls
+# gog_urls
 
 URLs to get various GOG.com data.
 
 ## GOG.com URLs
 
-Here are the key URLs functions exported by gogurls intended for client use:
+Here are the key URLs functions exported by gog_urls intended for client use:
 
 ### AccountProductsPage
 

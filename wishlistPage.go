@@ -2,24 +2,24 @@
 // Use of this source code is governed by an MIT-style license that can be
 // found in the LICENSE file.
 
-package gogurls
+package gog_urls
 
 import (
-	"github.com/arelate/gogtypes"
+	"github.com/arelate/gog_types"
 	"net/url"
 	"strconv"
 )
 
 func DefaultWishlistPage(
 	page string,
-	mt gogtypes.Media) *url.URL {
-	return WishlistPage(page, mt, gogtypes.WishlistSortByDateAdded, false)
+	mt gog_types.Media) *url.URL {
+	return WishlistPage(page, mt, gog_types.WishlistSortByDateAdded, false)
 }
 
 func WishlistPage(
 	page string,
-	mt gogtypes.Media,
-	sortOrder gogtypes.WishlistSortOrder,
+	mt gog_types.Media,
+	sortOrder gog_types.WishlistSortOrder,
 	hidden bool) *url.URL {
 
 	wishlistPage := &url.URL{

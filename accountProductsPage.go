@@ -2,29 +2,29 @@
 // Use of this source code is governed by an MIT-style license that can be
 // found in the LICENSE file.
 
-package gogurls
+package gog_urls
 
 import (
-	"github.com/arelate/gogtypes"
+	"github.com/arelate/gog_types"
 	"net/url"
 	"strconv"
 )
 
 func DefaultAccountProductsPage(
 	page string,
-	mt gogtypes.Media) *url.URL {
+	mt gog_types.Media) *url.URL {
 	return AccountProductsPage(
 		page,
 		mt,
-		gogtypes.AccountProductsSortPurchaseDate,
+		gog_types.AccountProductsSortPurchaseDate,
 		false,
 		false)
 }
 
 func AccountProductsPage(
 	page string,
-	mt gogtypes.Media,
-	sortOrder gogtypes.AccountProductsSortOrder,
+	mt gog_types.Media,
+	sortOrder gog_types.AccountProductsSortOrder,
 	updated bool, /* get only updated products */
 	hidden bool /* get only hidden products */) *url.URL {
 

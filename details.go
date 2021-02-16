@@ -2,15 +2,15 @@
 // Use of this source code is governed by an MIT-style license that can be
 // found in the LICENSE file.
 
-package gogurls
+package gog_urls
 
 import (
-	"github.com/arelate/gogtypes"
+	"github.com/arelate/gog_types"
 	"net/url"
 	"strings"
 )
 
-func Details(id string, mt gogtypes.Media) *url.URL {
+func Details(id string, mt gog_types.Media) *url.URL {
 	path := strings.Replace(detailsPathTemplate, "{mediaType}", mt.String(), 1)
 	return &url.URL{
 		Scheme: HttpsScheme,
