@@ -12,6 +12,7 @@ const (
 const (
 	GogHost    = "gog.com"
 	WwwGogHost = "www." + GogHost
+	apiHost    = "api.gog.com"
 )
 
 // paths
@@ -20,4 +21,5 @@ const (
 	productsPagePath        = "/games/ajax/filtered"
 	accountProductsPagePath = "/account/getFilteredProducts"
 	wishlistPath            = "/account/wishlist/search"
+	apiGamesPath            = "/v2/games/"
 )
