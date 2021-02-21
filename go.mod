@@ -1,5 +1,9 @@
 module github.com/arelate/gog_urls
 
-go 1.15
+go 1.16
 
-require github.com/arelate/gog_types v0.1.6-alpha
+require github.com/arelate/gog_types latest
+
+replace (
+	github.com/arelate/gog_types => ../gog_types
+)
