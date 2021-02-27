@@ -23,7 +23,7 @@ func ApiProductV2(id string, mt gog_types.Media) *url.URL {
 	}
 
 	q := apv2url.Query()
-	q.Add("expand", strings.Join(expandValues, ","))
+	q.Set("expand", strings.Join(expandValues, ","))
 	apv2url.RawQuery = q.Encode()
 
 	return apv2url
