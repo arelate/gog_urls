@@ -21,5 +21,6 @@ const (
 	productsPagePath        = "/games/ajax/filtered"
 	accountProductsPagePath = "/account/getFilteredProducts"
 	wishlistPath            = "/account/wishlist/search"
-	apiGamesPath            = "/v2/games/"
+	apiV1PathTemplate       = "/products/{id}?expand=downloads,expanded_dlcs,description,screenshots,videos,related_products,changelog"
+	apiV2GamesPath          = "/v2/games/"
 )
