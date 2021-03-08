@@ -5,7 +5,10 @@ import (
 	"strings"
 )
 
-const pngExt = ".png"
+const (
+	pngExt = ".png"
+	jpgExt = ".jpg"
+)
 
 func Image(srcImage string) (*url.URL, error) {
 	imgUrl, err := url.Parse(srcImage)
@@ -15,7 +18,8 @@ func Image(srcImage string) (*url.URL, error) {
 
 	imgUrl.Scheme = HttpsScheme
 
-	if !strings.HasSuffix(imgUrl.Path, pngExt) {
+	if !strings.HasSuffix(imgUrl.Path, pngExt) &&
+		!strings.HasSuffix(imgUrl.Path, jpgExt) {
 		imgUrl.Path += pngExt
 	}
 
