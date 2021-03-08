@@ -2,6 +2,7 @@ package gog_urls
 
 import (
 	"net/url"
+	"strings"
 )
 
 const pngExt = ".png"
@@ -13,7 +14,10 @@ func Image(srcImage string) (*url.URL, error) {
 	}
 
 	imgUrl.Scheme = HttpsScheme
-	imgUrl.Path += pngExt
+
+	if !strings.HasSuffix(imgUrl.Path, pngExt) {
+		imgUrl.Path += pngExt
+	}
 
 	return imgUrl, nil
 }
