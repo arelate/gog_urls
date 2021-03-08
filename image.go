@@ -18,8 +18,12 @@ func Image(srcImage string) (*url.URL, error) {
 
 	imgUrl.Scheme = HttpsScheme
 
-	if !strings.HasSuffix(imgUrl.Path, pngExt) &&
-		!strings.HasSuffix(imgUrl.Path, jpgExt) {
+	// make sure we're always downloading .png source image
+	if strings.HasSuffix(imgUrl.Path, jpgExt) {
+		imgUrl.Path = strings.Replace(imgUrl.Path, jpgExt, pngExt, 1)
+	}
+
+	if !strings.HasSuffix(imgUrl.Path, pngExt) {
 		imgUrl.Path += pngExt
 	}
 
