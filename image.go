@@ -34,3 +34,16 @@ func Image(srcImage string) (*url.URL, error) {
 
 	return imgUrl, nil
 }
+
+func Screenshots(csvScreenshots string) ([]*url.URL, error) {
+	screenshots := strings.Split(csvScreenshots, ",")
+	scrUrls := make([]*url.URL, 0, len(screenshots))
+	for _, scr := range screenshots {
+		scrUrl, err := Image(scr)
+		if err != nil {
+			return scrUrls, err
+		}
+		scrUrls = append(scrUrls, scrUrl)
+	}
+	return scrUrls, nil
+}
