@@ -6,8 +6,9 @@ import (
 )
 
 const (
-	pngExt = ".png"
-	jpgExt = ".jpg"
+	pngExt               = ".png"
+	jpgExt               = ".jpg"
+	formatterPlaceholder = "_{formatter}"
 )
 
 func Image(srcImage string) (*url.URL, error) {
@@ -17,6 +18,10 @@ func Image(srcImage string) (*url.URL, error) {
 	}
 
 	imgUrl.Scheme = HttpsScheme
+
+	if strings.Contains(imgUrl.Path, formatterPlaceholder) {
+		imgUrl.Path = strings.Replace(imgUrl.Path, formatterPlaceholder, "", 1)
+	}
 
 	// make sure we're always downloading .png source image
 	if strings.HasSuffix(imgUrl.Path, jpgExt) {
