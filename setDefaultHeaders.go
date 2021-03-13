@@ -11,11 +11,11 @@ func SetDefaultHeaders(req *http.Request, host, accept string) {
 	const (
 		acceptLanguageHeader = "en-us"
 		connectionHeader     = "keep-alive"
-		userAgentHeader      = "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) " +
+		userAgentHeader      = "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_3_0) " +
 			"AppleWebKit/537.36 (KHTML, like Gecko) " +
-			"Chrome/87.0.4280.141 " +
+			"Chrome/89.0.4389.82 " +
 			"Safari/537.36 " +
-			"Edg/87.0.664.75" // Microsoft Edge 87 UA string
+			"Edg/89.0.774.50" // Microsoft Edge 89 UA string
 	)
 	if host != "" {
 		req.Host = host
