@@ -1,15 +1,14 @@
 package gog_urls
 
 import (
+	"fmt"
 	"net/url"
-	"os"
 	"path"
 	"strings"
 )
 
 const (
 	pngExt               = ".png"
-	jpgExt               = ".jpg"
 	formatterPlaceholder = "_{formatter}"
 )
 
@@ -17,41 +16,49 @@ func ImageId(srcImage string) string {
 	if srcImage == "" {
 		return srcImage
 	}
-	var lastPart string
-	pathParts := strings.Split(srcImage, (string)(os.PathSeparator))
-	if len(pathParts) > 0 {
-		lastPart = pathParts[len(pathParts)-1]
-	}
 
-	return strings.TrimSuffix(lastPart, path.Ext(lastPart))
+	_, fn := path.Split(srcImage)
+	fnSansExt := strings.TrimSuffix(fn, path.Ext(fn))
+
+	return strings.TrimSuffix(fnSansExt, formatterPlaceholder)
 }
 
-func Image(srcImage string) (*url.URL, error) {
-	imgUrl, err := url.Parse(srcImage)
-	if err != nil {
-		return nil, err
+func Image(imageId string) (*url.URL, error) {
+	if imageId == "" {
+		return nil, fmt.Errorf("gog_urls: empty image-id")
 	}
-
-	imgUrl.Scheme = HttpsScheme
-
-	if strings.Contains(imgUrl.Path, formatterPlaceholder) {
-		imgUrl.Path = strings.Replace(imgUrl.Path, formatterPlaceholder, "", 1)
-	}
-
-	// make sure we're always downloading .png source image
-	if strings.HasSuffix(imgUrl.Path, jpgExt) {
-		imgUrl.Path = strings.Replace(imgUrl.Path, jpgExt, pngExt, 1)
-	}
-
-	if !strings.HasSuffix(imgUrl.Path, pngExt) {
-		imgUrl.Path += pngExt
-	}
-
-	return imgUrl, nil
+	return &url.URL{
+		Scheme: HttpsScheme,
+		Host:   imagesHost,
+		Path:   imageId + pngExt,
+	}, nil
 }
 
-func Screenshots(csvScreenshots string) ([]*url.URL, error) {
-	screenshots := strings.Split(csvScreenshots, ",")
+//func Image(srcImage string) (*url.URL, error) {
+//	imgUrl, err := url.Parse(srcImage)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	imgUrl.Scheme = HttpsScheme
+//
+//	if strings.Contains(imgUrl.Path, formatterPlaceholder) {
+//		imgUrl.Path = strings.Replace(imgUrl.Path, formatterPlaceholder, "", 1)
+//	}
+//
+//	// make sure we're always downloading .png source image
+//	if strings.HasSuffix(imgUrl.Path, jpgExt) {
+//		imgUrl.Path = strings.Replace(imgUrl.Path, jpgExt, pngExt, 1)
+//	}
+//
+//	if !strings.HasSuffix(imgUrl.Path, pngExt) {
+//		imgUrl.Path += pngExt
+//	}
+//
+//	return imgUrl, nil
+//}
+
+func Screenshots(screenshots []string) ([]*url.URL, error) {
 	scrUrls := make([]*url.URL, 0, len(screenshots))
 	for _, scr := range screenshots {
 		scrUrl, err := Image(scr)

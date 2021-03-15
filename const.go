@@ -13,6 +13,7 @@ const (
 	GogHost    = "gog.com"
 	WwwGogHost = "www." + GogHost
 	apiHost    = "api.gog.com"
+	imagesHost = "images.gog-statics.com"
 )
 
 // paths
