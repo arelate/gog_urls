@@ -2,6 +2,8 @@ package gog_urls
 
 import (
 	"net/url"
+	"os"
+	"path"
 	"strings"
 )
 
@@ -10,6 +12,19 @@ const (
 	jpgExt               = ".jpg"
 	formatterPlaceholder = "_{formatter}"
 )
+
+func ImageId(srcImage string) string {
+	if srcImage == "" {
+		return srcImage
+	}
+	var lastPart string
+	pathParts := strings.Split(srcImage, (string)(os.PathSeparator))
+	if len(pathParts) > 0 {
+		lastPart = pathParts[len(pathParts)-1]
+	}
+
+	return strings.TrimSuffix(lastPart, path.Ext(lastPart))
+}
 
 func Image(srcImage string) (*url.URL, error) {
 	imgUrl, err := url.Parse(srcImage)
