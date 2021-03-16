@@ -8,8 +8,9 @@ import (
 )
 
 const (
-	pngExt               = ".png"
 	formatterPlaceholder = "_{formatter}"
+	pngExt               = ".png"
+	jpgExt               = ".jpg"
 )
 
 func ImageId(srcImage string) string {
@@ -30,38 +31,23 @@ func Image(imageId string) (*url.URL, error) {
 	return &url.URL{
 		Scheme: HttpsScheme,
 		Host:   imagesHost,
-		Path:   imageId + pngExt,
+		Path:   strings.Replace(imagesPathTemplate, "{0}", imageId, 1),
 	}, nil
 }
 
-//func Image(srcImage string) (*url.URL, error) {
-//	imgUrl, err := url.Parse(srcImage)
-//	if err != nil {
-//		return nil, err
-//	}
-//
-//	imgUrl.Scheme = HttpsScheme
-//
-//	if strings.Contains(imgUrl.Path, formatterPlaceholder) {
-//		imgUrl.Path = strings.Replace(imgUrl.Path, formatterPlaceholder, "", 1)
-//	}
-//
-//	// make sure we're always downloading .png source image
-//	if strings.HasSuffix(imgUrl.Path, jpgExt) {
-//		imgUrl.Path = strings.Replace(imgUrl.Path, jpgExt, pngExt, 1)
-//	}
-//
-//	if !strings.HasSuffix(imgUrl.Path, pngExt) {
-//		imgUrl.Path += pngExt
-//	}
-//
-//	return imgUrl, nil
-//}
+func Screenshot(imageId string) (*url.URL, error) {
+	imgUrl, err := Image(imageId)
+	if err != nil {
+		return imgUrl, err
+	}
+	imgUrl.Path = strings.Replace(imgUrl.Path, pngExt, jpgExt, 1)
+	return imgUrl, err
+}
 
 func Screenshots(screenshots []string) ([]*url.URL, error) {
 	scrUrls := make([]*url.URL, 0, len(screenshots))
 	for _, scr := range screenshots {
-		scrUrl, err := Image(scr)
+		scrUrl, err := Screenshot(scr)
 		if err != nil {
 			return scrUrls, err
 		}

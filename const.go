@@ -24,4 +24,5 @@ const (
 	wishlistPath            = "/account/wishlist/search"
 	apiV1PathTemplate       = "/products/{id}"
 	apiV2GamesPath          = "/v2/games/"
+	imagesPathTemplate      = "/{0}.png"
 )
