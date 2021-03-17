@@ -35,7 +35,7 @@ func Image(imageId string) (*url.URL, error) {
 	}, nil
 }
 
-func Screenshot(imageId string) (*url.URL, error) {
+func ScreenshotJpg(imageId string) (*url.URL, error) {
 	imgUrl, err := Image(imageId)
 	if err != nil {
 		return imgUrl, err
@@ -47,7 +47,7 @@ func Screenshot(imageId string) (*url.URL, error) {
 func Screenshots(screenshots []string) ([]*url.URL, error) {
 	scrUrls := make([]*url.URL, 0, len(screenshots))
 	for _, scr := range screenshots {
-		scrUrl, err := Screenshot(scr)
+		scrUrl, err := ScreenshotJpg(scr)
 		if err != nil {
 			return scrUrls, err
 		}
