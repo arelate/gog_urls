@@ -5,6 +5,7 @@
 package gog_urls
 
 import (
+	"github.com/arelate/gog_media"
 	"github.com/arelate/gog_types"
 	"net/url"
 	"strconv"
@@ -12,13 +13,13 @@ import (
 
 func DefaultWishlistPage(
 	page string,
-	mt gog_types.Media) *url.URL {
+	mt gog_media.Media) *url.URL {
 	return WishlistPage(page, mt, gog_types.WishlistSortByDateAdded, false)
 }
 
 func WishlistPage(
 	page string,
-	mt gog_types.Media,
+	mt gog_media.Media,
 	sortOrder gog_types.WishlistSortOrder,
 	hidden bool) *url.URL {
 

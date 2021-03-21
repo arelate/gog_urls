@@ -1,12 +1,12 @@
 package gog_urls
 
 import (
-	"github.com/arelate/gog_types"
+	"github.com/arelate/gog_media"
 	"net/url"
 	"strings"
 )
 
-func ApiProductV1(id string, mt gog_types.Media) *url.URL {
+func ApiProductV1(id string, mt gog_media.Media) *url.URL {
 	apv1url := &url.URL{
 		Scheme: HttpsScheme,
 		Host:   apiHost,

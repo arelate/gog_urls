@@ -1,7 +1,7 @@
 package gog_urls
 
 import (
-	"github.com/arelate/gog_types"
+	"github.com/arelate/gog_media"
 	"net/url"
 )
 
@@ -14,7 +14,7 @@ var expandValues = []string{
 	"related_products",
 	"changelog"}
 
-func ApiProductV2(id string, mt gog_types.Media) *url.URL {
+func ApiProductV2(id string, mt gog_media.Media) *url.URL {
 	return &url.URL{
 		Scheme: HttpsScheme,
 		Host:   apiHost,

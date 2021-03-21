@@ -5,19 +5,20 @@
 package gog_urls
 
 import (
+	"github.com/arelate/gog_media"
 	"github.com/arelate/gog_types"
 	"net/url"
 )
 
 func DefaultProductsPage(
 	page string,
-	mt gog_types.Media) *url.URL {
+	mt gog_media.Media) *url.URL {
 	return ProductsPage(page, mt, gog_types.ProductsSortByNewestFirst)
 }
 
 func ProductsPage(
 	page string,
-	mt gog_types.Media,
+	mt gog_media.Media,
 	sortOrder gog_types.ProductsSortOrder) *url.URL {
 
 	productsPage := &url.URL{

@@ -5,12 +5,12 @@
 package gog_urls
 
 import (
-	"github.com/arelate/gog_types"
+	"github.com/arelate/gog_media"
 	"net/url"
 	"strings"
 )
 
-func Details(id string, mt gog_types.Media) *url.URL {
+func Details(id string, mt gog_media.Media) *url.URL {
 	path := strings.Replace(detailsPathTemplate, "{mediaType}", mt.String(), 1)
 	return &url.URL{
 		Scheme: HttpsScheme,
