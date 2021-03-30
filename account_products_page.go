@@ -11,31 +11,31 @@ import (
 	"strconv"
 )
 
-func DefaultAccountProductsPage(
+func DefaultAccountPage(
 	page string,
 	mt gog_media.Media) *url.URL {
-	return AccountProductsPage(
+	return AccountPage(
 		page,
 		mt,
-		gog_types.AccountProductsSortPurchaseDate,
+		gog_types.AccountSortByPurchaseDate,
 		false,
 		false)
 }
 
-func AccountProductsPage(
+func AccountPage(
 	page string,
 	mt gog_media.Media,
-	sortOrder gog_types.AccountProductsSortOrder,
+	sortOrder gog_types.AccountSortOrder,
 	updated bool, /* get only updated products */
 	hidden bool /* get only hidden products */) *url.URL {
 
-	accountProductsPage := &url.URL{
+	accountPage := &url.URL{
 		Scheme: HttpsScheme,
 		Host:   GogHost,
-		Path:   accountProductsPagePath,
+		Path:   accountPagePath,
 	}
 
-	q := accountProductsPage.Query()
+	q := accountPage.Query()
 	q.Add("mediaType", strconv.Itoa(int(mt)))
 	if sortOrder != "" {
 		q.Add("sortBy", string(sortOrder))
@@ -47,7 +47,7 @@ func AccountProductsPage(
 	if updated {
 		q.Add("isUpdated", "1")
 	}
-	accountProductsPage.RawQuery = q.Encode()
+	accountPage.RawQuery = q.Encode()
 
-	return accountProductsPage
+	return accountPage
 }

@@ -9,6 +9,7 @@ import (
 	"github.com/arelate/gog_types"
 	"net/url"
 	"strconv"
+	"strings"
 )
 
 func DefaultWishlistPage(
@@ -26,7 +27,7 @@ func WishlistPage(
 	wishlistPage := &url.URL{
 		Scheme: HttpsScheme,
 		Host:   GogHost,
-		Path:   wishlistPath,
+		Path:   wishlistSearchPath,
 	}
 
 	q := wishlistPage.Query()
@@ -41,4 +42,20 @@ func WishlistPage(
 	wishlistPage.RawQuery = q.Encode()
 
 	return wishlistPage
+}
+
+func AddToWishlist(id string) *url.URL {
+	return &url.URL{
+		Scheme: HttpsScheme,
+		Host:   GogHost,
+		Path:   strings.Replace(wishlistAddPathTemplate, "{id}", id, 1),
+	}
+}
+
+func RemoveFromWishlist(id string) *url.URL {
+	return &url.URL{
+		Scheme: HttpsScheme,
+		Host:   GogHost,
+		Path:   strings.Replace(wishlistRemovePathTemplate, "{id}", id, 1),
+	}
 }

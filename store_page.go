@@ -10,30 +10,30 @@ import (
 	"net/url"
 )
 
-func DefaultProductsPage(
+func DefaultStorePage(
 	page string,
 	mt gog_media.Media) *url.URL {
-	return ProductsPage(page, mt, gog_types.ProductsSortByNewestFirst)
+	return StorePage(page, mt, gog_types.StoreSortByNewestFirst)
 }
 
-func ProductsPage(
+func StorePage(
 	page string,
 	mt gog_media.Media,
-	sortOrder gog_types.ProductsSortOrder) *url.URL {
+	sortOrder gog_types.StoreSortOrder) *url.URL {
 
-	productsPage := &url.URL{
+	storePage := &url.URL{
 		Scheme: HttpsScheme,
 		Host:   GogHost,
-		Path:   productsPagePath,
+		Path:   storePagePath,
 	}
 
-	q := productsPage.Query()
+	q := storePage.Query()
 	q.Add("mediaType", mt.String())
 	if sortOrder != "" {
 		q.Add("sort", string(sortOrder))
 	}
 	q.Add("page", page)
-	productsPage.RawQuery = q.Encode()
+	storePage.RawQuery = q.Encode()
 
-	return productsPage
+	return storePage
 }

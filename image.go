@@ -31,7 +31,7 @@ func Image(imageId string) (*url.URL, error) {
 	return &url.URL{
 		Scheme: HttpsScheme,
 		Host:   imagesHost,
-		Path:   strings.Replace(imagesPathTemplate, "{0}", imageId, 1),
+		Path:   strings.Replace(imagesPathTemplate, "{image_id}", imageId, 1),
 	}, nil
 }
 

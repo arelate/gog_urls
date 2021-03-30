@@ -18,11 +18,21 @@ const (
 
 // paths
 const (
-	detailsPathTemplate     = "/account/{mediaType}Details/{id}.json"
-	productsPagePath        = "/games/ajax/filtered"
-	accountProductsPagePath = "/account/getFilteredProducts"
-	wishlistPath            = "/account/wishlist/search"
-	apiV1PathTemplate       = "/products/{id}"
-	apiV2GamesPath          = "/v2/games/"
-	imagesPathTemplate      = "/{0}.png"
+	detailsPathTemplate        = "/account/{mediaType}Details/{id}.json"
+	storePagePath              = "/games/ajax/filtered"
+	accountPagePath            = "/account/getFilteredProducts"
+	accountWishlistPath        = "/account/wishlist"
+	wishlistSearchPath         = accountWishlistPath + "/search"
+	userWishlistPath           = "/user/wishlist"
+	wishlistAddPathTemplate    = userWishlistPath + "/add/{id}"
+	wishlistRemovePathTemplate = userWishlistPath + "/remove/{id}"
+	apiV1PathTemplate          = "/products/{id}"
+	apiV2GamesPath             = "/v2/games/"
+	imagesPathTemplate         = "/{image_id}.png"
+	accountTagsPath            = "/account/tags"
+	tagsCreatePath             = accountTagsPath + "/add"
+	tagsDeletePath             = accountTagsPath + "/delete"
+	tagsUpdatePath             = accountTagsPath + "/update"
+	tagsAddPath                = accountTagsPath + "/attach"
+	tagsRemovePath             = accountTagsPath + "/detach"
 )
