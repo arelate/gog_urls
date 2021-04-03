@@ -24,7 +24,8 @@ func ImageId(srcImage string) string {
 	return strings.TrimSuffix(fnSansExt, formatterPlaceholder)
 }
 
-func Image(imageId string) (*url.URL, error) {
+// TODO: refactor this to use specified extension
+func ImagePng(imageId string) (*url.URL, error) {
 	if imageId == "" {
 		return nil, fmt.Errorf("gog_urls: empty image-id")
 	}
@@ -35,8 +36,8 @@ func Image(imageId string) (*url.URL, error) {
 	}, nil
 }
 
-func ScreenshotJpg(imageId string) (*url.URL, error) {
-	imgUrl, err := Image(imageId)
+func ImageJpg(imageId string) (*url.URL, error) {
+	imgUrl, err := ImagePng(imageId)
 	if err != nil {
 		return imgUrl, err
 	}
@@ -47,7 +48,7 @@ func ScreenshotJpg(imageId string) (*url.URL, error) {
 func Screenshots(screenshots []string) ([]*url.URL, error) {
 	scrUrls := make([]*url.URL, 0, len(screenshots))
 	for _, scr := range screenshots {
-		scrUrl, err := ScreenshotJpg(scr)
+		scrUrl, err := ImageJpg(scr)
 		if err != nil {
 			return scrUrls, err
 		}
