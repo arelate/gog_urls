@@ -13,12 +13,12 @@ const (
 	jpgExt               = ".jpg"
 )
 
-func ImageId(srcImage string) string {
-	if srcImage == "" {
-		return srcImage
+func ImageId(imageUrl string) string {
+	if imageUrl == "" {
+		return imageUrl
 	}
 
-	_, fn := path.Split(srcImage)
+	_, fn := path.Split(imageUrl)
 	fnSansExt := strings.TrimSuffix(fn, path.Ext(fn))
 
 	return strings.TrimSuffix(fnSansExt, formatterPlaceholder)

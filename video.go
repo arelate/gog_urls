@@ -1,0 +1,1 @@
+package gog_urls

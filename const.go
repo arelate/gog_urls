@@ -14,14 +14,16 @@ const (
 	WwwGogHost = "www." + GogHost
 	apiHost    = "api.gog.com"
 	imagesHost = "images.gog-statics.com"
+	menuHost   = "menu.gog.com"
 )
 
 // paths
 const (
-	detailsPathTemplate        = "/account/{mediaType}Details/{id}.json"
 	storePagePath              = "/games/ajax/filtered"
-	accountPagePath            = "/account/getFilteredProducts"
-	accountWishlistPath        = "/account/wishlist"
+	accountPath                = "/account"
+	detailsPathTemplate        = accountPath + "/{mediaType}Details/{id}.json"
+	accountPagePath            = accountPath + "/getFilteredProducts"
+	accountWishlistPath        = accountPath + "/wishlist"
 	wishlistSearchPath         = accountWishlistPath + "/search"
 	userWishlistPath           = "/user/wishlist"
 	wishlistAddPathTemplate    = userWishlistPath + "/add/{id}"
@@ -29,6 +31,7 @@ const (
 	apiV1PathTemplate          = "/products/{id}"
 	apiV2GamesPath             = "/v2/games/"
 	imagesPathTemplate         = "/{image_id}.png"
+	licencesPath               = "/v1/account/licences"
 	accountTagsPath            = "/account/tags"
 	tagsCreatePath             = accountTagsPath + "/add"
 	tagsDeletePath             = accountTagsPath + "/delete"
