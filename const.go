@@ -28,6 +28,7 @@ const (
 	userWishlistPath           = "/user/wishlist"
 	wishlistAddPathTemplate    = userWishlistPath + "/add/{id}"
 	wishlistRemovePathTemplate = userWishlistPath + "/remove/{id}"
+	ordersPath                 = accountPath + "/settings/orders/data"
 	apiV1PathTemplate          = "/products/{id}"
 	apiV2GamesPath             = "/v2/games/"
 	imagesPathTemplate         = "/{image_id}.png"
